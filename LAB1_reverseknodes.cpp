@@ -39,29 +39,28 @@ NODE insert(NODE head,int item)
 	
 }
 
-NODE reverse(NODE head,int k)
-{
+NODE reverse (NODE head, int k)  
+{  
+    NODE curr = head;  
+    NODE next = NULL;  
+    NODE prev = NULL;  
+    int c = 0;  
+      
+    while (curr != NULL && c < k)  
+    {  
+        next = curr->next;  
+        curr->next = prev;  
+        prev = curr;  
+        curr = next;  
+        c++;  
+    }  
+      
     
-    NODE prev=NULL;
-    NODE curr=head;
-    NODE p=curr;
-    NODE next=NULL;
-    
-    while(curr!=NULL && k>0)
-    {
-        next=curr->next;
-        curr->next=prev;
-        prev = curr; 
-        curr = next; 
-        k--;
-    }
-    p->next=curr;
-    head = prev; 
-    return head;
-    
-    
-    
-}
+    if (next != NULL)  
+    head->next = reverse(next, k);  
+  
+    return prev;  
+}  
 
 void display(NODE head)
 {
@@ -97,3 +96,21 @@ int main()
 	display(head);
 	return 0;
 }
+
+/*
+i/p->
+5
+1 2 3 4 5
+3
+
+o/p->
+3 2 1 5 4 
+
+
+i/p->
+8 
+1 2 2 4 5 6 7 8
+4
+
+o/p->
+4 2 2 1 8 7 6 5 
