@@ -48,7 +48,7 @@ void insert_end(Node** head,int data)
         Node* prev=NULL;
         Node* next;
         
-        while(curr!=NULL)
+        while(XOR(prev,curr->nextprev)!=NULL)
         {
             next=XOR(prev,curr->nextprev);
             prev=curr;
